@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favian's calculator </title> 
+<style>canvas#myCanvas {
+    background-color: beige;
+    border: 1px solid black;
+  }</style>
+
+</head>
+
+<body>
+    <canvas id="myCanvas" width="300" height="300">Your browser does not support canvas</canvas><button type="button" onclick="wink()">Wink</button>
+<script>const canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+    
+    const CW = canvas.width;
+    const CH = canvas.height;
+    const halfCW = CW / 2;
+    const halfCH = CH / 2;
+    
+    function drawCircle(x, y, r, startA, endA, color) {
+      ctx.beginPath();
+      ctx.fillStyle = color;
+      ctx.arc(x, y, r, startA, endA);
+      ctx.fill();
+      ctx.stroke();
+    }
+    
+    let isWinking = false;
+    
+    function wink() {
+      // draw face
+      drawCircle(halfCW, halfCH, 100, 0, Math.PI * 2, "yellow");
+    
+      // draw left eye
+      drawCircle(halfCW - 30, halfCH - 30, 20, 0, Math.PI * 2, "black");
+    
+      drawCircle(halfCW - 1, halfCH - 5, 35, 0, Math.PI * 0.5, " purple");
+    
+      drawCircle(halfCW + 10, halfCH + 30, 50, 0, Math.PI * 1, "white");
+    
+      if (isWinking) {
+        // draw closed right eye
+        ctx.fillRect(halfCW + 10, halfCH - 30, 40, 20);
+      } else {
+        // draw right eye
+        drawCircle(halfCW + 30, halfCH - 30, 20, 0, Math.PI * 2, "pink");
+      }
+    
+      isWinking = !isWinking;
+    } </script>
+</body>
+
+</html>
